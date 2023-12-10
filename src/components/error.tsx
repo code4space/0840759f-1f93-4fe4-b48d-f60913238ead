@@ -1,7 +1,8 @@
 "use client"
-import '@/app/assets/css/error.css'
+import '@/assets/css/error.css'
 import Link from 'next/link'
 import React from 'react';
+import { z } from 'zod';
 import { useRouter } from "next/navigation"
 
 
@@ -9,19 +10,19 @@ interface AnimationSetting {
     [key: number]: { '--err-duration': string; '--err-delay': string };
 }
 
-type NotFound = {
-    type: '404'
-}
+const NotFoundSchema = z.object({
+    type: z.literal('404')
+});
 
-type Error = {
-    type: 'ERROR'
-    errorMessage: string,
-    reset: () => void
-}
+const ErrorSchema = z.object({
+    type: z.literal('ERROR'),
+    errorMessage: z.string(),
+    reset: z.function()
+});
 
-type ErrorType = NotFound | Error
+const ErrorTypeSchema = z.union([NotFoundSchema, ErrorSchema]);
 
-export default function ErrorPage(props: ErrorType) {
+export default function ErrorPage(props: z.infer<typeof ErrorTypeSchema>) {
     const router = useRouter()
     const animationSetting: AnimationSetting = {
         1: { '--err-duration': '2.5s', '--err-delay': '0s' },
@@ -29,7 +30,7 @@ export default function ErrorPage(props: ErrorType) {
         3: { '--err-duration': '3s', '--err-delay': '1s' },
         4: { '--err-duration': '1.5s', '--err-delay': '2s' },
     };
-    
+
     return (
         <div className="error">
             <div className="drop">

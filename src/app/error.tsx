@@ -1,5 +1,5 @@
 'use client'
-import ErrorPage from './components/error'
+import ErrorPage from '../components/error'
 
 export default function Error({ error, reset }: { error: Error, reset: () => void }) {
     return (
