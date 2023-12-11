@@ -2,44 +2,46 @@ import React, { useEffect, useState, ChangeEvent } from 'react';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import '@/assets/css/input.css'
+import { z } from 'zod';
 
-interface PasswordInputProps {
-    state: any;
-    setState: React.Dispatch<React.SetStateAction<any>>;
-    value?: string;
-    placeHolder: string;
-    strength?: boolean;
-    required?: boolean;
-}
+const PasswordInputProps = z.object({
+    state: z.any(),
+    setState: z.function().args(z.any()).returns(z.any()),
+    value: z.string().optional(),
+    placeHolder: z.string(),
+    strength: z.boolean().optional(),
+    required: z.boolean().optional(),
+});
 
-interface InputProps {
-    state: any;
-    setState: React.Dispatch<React.SetStateAction<any>>;
-    value?: string;
-    placeHolder: string;
-}
+const InputProps = z.object({
+    state: z.any(),
+    setState: z.function().args(z.any()).returns(z.any()),
+    value: z.string().optional(),
+    placeHolder: z.string(),
+});
 
-interface InputEmailProps {
-    state: any;
-    setState: React.Dispatch<React.SetStateAction<any>>;
-    value?: string;
-    placeHolder: string;
-}
 
-interface TextareaProps {
-    readOnly?: boolean;
-    state: any;
-    setState: React.Dispatch<React.SetStateAction<any>>;
-    value?: string;
-    placeHolder: string;
-}
+const InputEmailProps = z.object({
+    state: z.any(),
+    setState: z.function().args(z.any()).returns(z.any()),
+    value: z.string().optional(),
+    placeHolder: z.string(),
+});
 
-interface InputFileProps {
-    state: any;
-    setState: React.Dispatch<React.SetStateAction<any>>;
-    value?: string;
-    required?: boolean;
-}
+const TextareaProps = z.object({
+    readOnly: z.boolean().optional(),
+    state: z.any(),
+    setState: z.function().args(z.any()).returns(z.any()),
+    value: z.string().optional(),
+    placeHolder: z.string(),
+});
+
+const InputFileProps = z.object({
+    state: z.any(),
+    setState: z.function().args(z.any()).returns(z.any()),
+    value: z.string().optional(),
+    required: z.boolean().optional(),
+});
 
 function passwordStrengthParameter(password: string) {
     // Define a regular expression to match common patterns
@@ -67,7 +69,7 @@ export function PasswordInput({
     placeHolder,
     strength = false,
     required = true,
-}: PasswordInputProps) {
+}: z.infer<typeof PasswordInputProps>) {
     const [isHide, setIsHide] = useState(true);
     const [password, setPassword] = useState<{ status: string; color: string }>({
         status: '',
@@ -116,7 +118,7 @@ export function PasswordInput({
     );
 }
 
-export function Input({ state, setState, value, placeHolder }: InputProps) {
+export function Input({ state, setState, value, placeHolder }: z.infer<typeof InputProps>) {
     function handleChangeState(e: ChangeEvent<HTMLInputElement>) {
         if (!value) setState(e.target.value);
         else setState({ ...state, [value]: e.target.value });
@@ -140,7 +142,7 @@ export function Input({ state, setState, value, placeHolder }: InputProps) {
     );
 }
 
-export function InputEmail({ state, setState, value, placeHolder }: InputEmailProps) {
+export function InputEmail({ state, setState, value, placeHolder }: z.infer<typeof InputEmailProps>) {
     function handleChangeState(e: ChangeEvent<HTMLInputElement>) {
         if (!value) setState(e.target.value);
         else setState({ ...state, [value]: e.target.value });
@@ -164,7 +166,7 @@ export function InputEmail({ state, setState, value, placeHolder }: InputEmailPr
     );
 }
 
-export function Textarea({ readOnly = false, state, setState, value, placeHolder }: TextareaProps) {
+export function Textarea({ readOnly = false, state, setState, value, placeHolder }: z.infer<typeof TextareaProps>) {
     function handleChangeState(e: ChangeEvent<HTMLTextAreaElement>) {
         if (!value) setState(e.target.value);
         else setState({ ...state, [value]: e.target.value });
@@ -188,7 +190,7 @@ export function Textarea({ readOnly = false, state, setState, value, placeHolder
     );
 }
 
-export function InputFile({ state, setState, value, required = true }: InputFileProps) {
+export function InputFile({ state, setState, value, required = true }: z.infer<typeof InputFileProps>) {
     const handleChangeState = (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
 

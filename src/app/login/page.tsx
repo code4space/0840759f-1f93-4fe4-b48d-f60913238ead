@@ -29,6 +29,7 @@ export default function Page() {
             .then(({ token: access_token }) => {
                 router.push('/')
                 document.cookie = `access_token=${access_token}; path=/; max-age=3600`
+                
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -53,7 +54,6 @@ export default function Page() {
                     <h3 className='text-purple-500 text-2xl font-semibold'>AMBISIUS</h3>
                     <h4 className='text-purple-500 mb-3 font-semibold'>SIGN IN</h4>
                     <span className='absolute top-2 right-2 faq'>
-
                         <HelpCenterIcon className='text-purple-400 hover:text-purple-500 cursor-pointer  transition' />
                     </span>
                     <form className='w-full flex px-5 py-10 flex-col gap-3' onSubmit={login}>
