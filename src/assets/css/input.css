@@ -136,12 +136,17 @@ input[type="password"] {
   padding-right: 36px;
 }
 
-.faq:hover::before {
-  content: "USER: kminchelle PASS: 0lelplR";
-  padding: 10px;
-  background-color: white;
-  border-radius: 5px;
+.faq > div {
+  opacity: 0;
+  transition: 0.3s all ease;
   position: absolute;
   top: -200%;
   left: -200%;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.faq:hover > div {
+  opacity: 1;
 }

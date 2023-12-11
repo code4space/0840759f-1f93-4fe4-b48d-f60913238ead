@@ -11,6 +11,7 @@ const PasswordInputProps = z.object({
     placeHolder: z.string(),
     strength: z.boolean().optional(),
     required: z.boolean().optional(),
+    withoutLabel: z.boolean().optional(),
 });
 
 const InputProps = z.object({
@@ -18,6 +19,7 @@ const InputProps = z.object({
     setState: z.function().args(z.any()).returns(z.any()),
     value: z.string().optional(),
     placeHolder: z.string(),
+    withoutLabel: z.boolean().optional(),
 });
 
 
@@ -69,6 +71,7 @@ export function PasswordInput({
     placeHolder,
     strength = false,
     required = true,
+    withoutLabel = false,
 }: z.infer<typeof PasswordInputProps>) {
     const [isHide, setIsHide] = useState(true);
     const [password, setPassword] = useState<{ status: string; color: string }>({
@@ -99,8 +102,9 @@ export function PasswordInput({
                 required={required}
                 value={value ? state[value] : state}
                 onChange={handleChangeState}
+                placeholder={withoutLabel ? placeHolder : ' '}
             />
-            <label>{placeHolder}</label>
+            {withoutLabel ? null : <label>{placeHolder}</label>}
             {strength && (
                 <p
                     style={{ border: `1px solid ${password.color}`, color: password.color }}
@@ -118,7 +122,7 @@ export function PasswordInput({
     );
 }
 
-export function Input({ state, setState, value, placeHolder }: z.infer<typeof InputProps>) {
+export function Input({ state, setState, value, placeHolder, withoutLabel = false }: z.infer<typeof InputProps>) {
     function handleChangeState(e: ChangeEvent<HTMLInputElement>) {
         if (!value) setState(e.target.value);
         else setState({ ...state, [value]: e.target.value });
@@ -136,8 +140,9 @@ export function Input({ state, setState, value, placeHolder }: z.infer<typeof In
                 required
                 value={value ? state[value] : state}
                 onChange={handleChangeState}
+                placeholder={withoutLabel ? placeHolder : ' '}
             />
-            <label>{placeHolder}</label>
+            {withoutLabel ? null : <label>{placeHolder}</label>}
         </div>
     );
 }

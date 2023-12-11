@@ -49,6 +49,7 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
     }
 
     function logout() {
+        document.cookie = "access_token=; max-age=0; path=/";
         router.push('/login');
     }
 
@@ -77,7 +78,7 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
 
     const style = {
         menu: 'cursor-pointer text-gray-500 bg-none border-2 border-solid border-white p-1 rounded-2xl transition-all duration-300 ease-in-out flex items-center hover:text-gray-600 hover:bg-gray-200 active:border-2 active:border-solid active:border-purple-200',
-        list: 'relative w-full list-none text-white text-sm flex items-center h-12 pl-3 cursor-pointer mb-3 z-10 transition-all duration-500 ease-in-out'
+        list: 'relative w-full list-none text-white text-base flex items-center h-12 pl-3 cursor-pointer mb-3 z-10 transition-all duration-500 ease-in-out font-semibold'
     }
 
     return (
@@ -132,7 +133,9 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
                         </div>
                     )}
                 </div>
-                {children}
+                <div className='w-full p-5 overflow-y-auto' style={{ height: 'calc(100% - 60px)' }}>
+                    {children}
+                </div>
             </nav>
         </main>
     );
