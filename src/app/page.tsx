@@ -2,7 +2,7 @@
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ReactECharts from 'echarts-for-react';
 
-export default function Home() {
+export default function Page() {
   const barChart = {
     title: {
       text: 'Sample Bar Chart',

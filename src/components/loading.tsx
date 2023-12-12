@@ -1,6 +1,6 @@
-import '@/app/assets/css/loading.css'
+import '@/assets/css/loading.css'
 
-const Loading = () => {
+const LoadingUI = () => {
     return (
         <div id="loading">
             <svg viewBox="0 0 100 100">
@@ -16,4 +16,4 @@ const Loading = () => {
     )
 }
 
-export default Loading
+export default LoadingUI

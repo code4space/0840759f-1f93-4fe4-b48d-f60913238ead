@@ -1,7 +1,6 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import '@/assets/css/input.css'
 import { z } from 'zod';
 
 const PasswordInputProps = z.object({
@@ -28,21 +27,6 @@ const InputEmailProps = z.object({
     setState: z.function().args(z.any()).returns(z.any()),
     value: z.string().optional(),
     placeHolder: z.string(),
-});
-
-const TextareaProps = z.object({
-    readOnly: z.boolean().optional(),
-    state: z.any(),
-    setState: z.function().args(z.any()).returns(z.any()),
-    value: z.string().optional(),
-    placeHolder: z.string(),
-});
-
-const InputFileProps = z.object({
-    state: z.any(),
-    setState: z.function().args(z.any()).returns(z.any()),
-    value: z.string().optional(),
-    required: z.boolean().optional(),
 });
 
 function passwordStrengthParameter(password: string) {
@@ -167,53 +151,6 @@ export function InputEmail({ state, setState, value, placeHolder }: z.infer<type
                 onChange={handleChangeState}
             />
             <label>{placeHolder}</label>
-        </div>
-    );
-}
-
-export function Textarea({ readOnly = false, state, setState, value, placeHolder }: z.infer<typeof TextareaProps>) {
-    function handleChangeState(e: ChangeEvent<HTMLTextAreaElement>) {
-        if (!value) setState(e.target.value);
-        else setState({ ...state, [value]: e.target.value });
-    }
-
-    function checkValue() {
-        if (value) return state[value];
-        else return state;
-    }
-
-    return (
-        <div className={checkValue().length ? 'active-input inputBox' : 'inputBox'}>
-            <textarea
-                required
-                readOnly={readOnly ? true : false}
-                value={value ? state[value] : state}
-                onChange={handleChangeState}
-            />
-            <label>{placeHolder}</label>
-        </div>
-    );
-}
-
-export function InputFile({ state, setState, value, required = true }: z.infer<typeof InputFileProps>) {
-    const handleChangeState = (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-
-        if (file && file.type.startsWith('image/')) {
-            if (!value) setState(file);
-            else setState({ ...state, [value]: file });
-        }
-    };
-
-    return (
-        <div className="inputBox">
-            <input
-                type="file"
-                accept="image/png, image/jpeg"
-                onChange={handleChangeState}
-                placeholder="Image file"
-                required={required}
-            />
         </div>
     );
 }

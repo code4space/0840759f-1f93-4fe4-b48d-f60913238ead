@@ -11,6 +11,7 @@ import DesktopMacSharpIcon from '@mui/icons-material/DesktopMacSharp';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import CategoryIcon from '@mui/icons-material/Category';
 import '@/assets/css/navigation.css'
 import { z } from 'zod';
 
@@ -61,7 +62,7 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
 
         handleResize();
 
-        const route = ['/', '/desk', '/growth', '/history'];
+        const route = ['/', '/product', '/growth', '/history'];
         const index = route.indexOf(location.pathname)
         setState((prev) => ({ ...prev, active: index < 0 ? 0 : index }));
 
@@ -92,7 +93,7 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
                             <div className='absolute w-full pl-3 transition-all duration-500 ease-in-out ' style={{ left: '1px', top: `${active * 60 + 84}px` }}><div className='bg-white rounded-3xl w-11/12 h-12 relative z-10'></div></div>
                             <ul>
                                 <li className={`${active === 0 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(0, '/') }}><HomeRoundedIcon /> <p>&nbsp; Dashboard</p> </li>
-                                <li className={`${active === 1 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(1, '/desk') }}><DesktopMacSharpIcon /> <p>&nbsp; Desk</p></li>
+                                <li className={`${active === 1 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(1, '/product') }}><CategoryIcon /> <p>&nbsp; Product</p></li>
                                 <li className={`${active === 2 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(2, '/growth') }}><MovingSharpIcon /> <p>&nbsp; Growth</p></li>
                                 <li className={`${active === 3 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(3, '/history') }}><HistorySharpIcon /> <p>&nbsp; History</p></li>
                             </ul>
@@ -104,7 +105,7 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
                         <div className='absolute w-full pl-3 transition-all duration-500 ease-in-out' style={{ left: '1px', top: `${active * 60 + 82}px` }}><div className='active'></div></div>
                         <ul>
                             <li className={`${active === 0 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(0, '/') }}><HomeRoundedIcon className='text-2xl mr-3' /> {showDetail && <p>Dashboard</p>} </li>
-                            <li className={`${active === 1 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(1, '/desk') }}><DesktopMacSharpIcon className='text-2xl mr-3' /> {showDetail && <p>Desk</p>}</li>
+                            <li className={`${active === 1 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(1, '/product') }}><CategoryIcon className='text-2xl mr-3' /> {showDetail && <p>Product</p>}</li>
                             <li className={`${active === 2 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(2, '/growth') }}><MovingSharpIcon className='text-2xl mr-3' /> {showDetail && <p>Growth</p>}</li>
                             <li className={`${active === 3 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(3, '/history') }}><HistorySharpIcon className='text-2xl mr-3' /> {showDetail && <p>History</p>}</li>
                         </ul>
