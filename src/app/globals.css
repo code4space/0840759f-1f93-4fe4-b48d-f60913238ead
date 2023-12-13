@@ -5,3 +5,12 @@
 body {
   background-color: #eff3f8;
 }
+
+.category-button {
+  color: var(--color-button);
+}
+
+.category-button:hover {
+  background-color: var(--color-button);
+  color: white;
+}

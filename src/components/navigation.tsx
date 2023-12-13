@@ -62,8 +62,11 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
 
         handleResize();
 
-        const route = ['/', '/product', '/growth', '/history'];
-        const index = route.indexOf(location.pathname)
+        const route = ['/', '/product', '/category'];
+
+        const index = route.findIndex((r) =>
+            location.pathname === r || location.pathname.startsWith(r + '/')
+        );
         setState((prev) => ({ ...prev, active: index < 0 ? 0 : index }));
 
         window.addEventListener('resize', handleResize);
@@ -93,9 +96,8 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
                             <div className='absolute w-full pl-3 transition-all duration-500 ease-in-out ' style={{ left: '1px', top: `${active * 60 + 84}px` }}><div className='bg-white rounded-3xl w-11/12 h-12 relative z-10'></div></div>
                             <ul>
                                 <li className={`${active === 0 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(0, '/') }}><HomeRoundedIcon /> <p>&nbsp; Dashboard</p> </li>
-                                <li className={`${active === 1 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(1, '/product') }}><CategoryIcon /> <p>&nbsp; Product</p></li>
-                                <li className={`${active === 2 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(2, '/growth') }}><MovingSharpIcon /> <p>&nbsp; Growth</p></li>
-                                <li className={`${active === 3 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(3, '/history') }}><HistorySharpIcon /> <p>&nbsp; History</p></li>
+                                <li className={`${active === 1 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(1, '/product') }}><DesktopMacSharpIcon /> <p>&nbsp; Product</p></li>
+                                <li className={`${active === 2 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(2, '/category') }}><CategoryIcon /> <p>&nbsp; Category</p></li>
                             </ul>
                         </div>
                     </>
@@ -105,9 +107,8 @@ export default function Navbar({ children }: NavbarProps): JSX.Element {
                         <div className='absolute w-full pl-3 transition-all duration-500 ease-in-out' style={{ left: '1px', top: `${active * 60 + 82}px` }}><div className='active'></div></div>
                         <ul>
                             <li className={`${active === 0 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(0, '/') }}><HomeRoundedIcon className='text-2xl mr-3' /> {showDetail && <p>Dashboard</p>} </li>
-                            <li className={`${active === 1 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(1, '/product') }}><CategoryIcon className='text-2xl mr-3' /> {showDetail && <p>Product</p>}</li>
-                            <li className={`${active === 2 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(2, '/growth') }}><MovingSharpIcon className='text-2xl mr-3' /> {showDetail && <p>Growth</p>}</li>
-                            <li className={`${active === 3 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(3, '/history') }}><HistorySharpIcon className='text-2xl mr-3' /> {showDetail && <p>History</p>}</li>
+                            <li className={`${active === 1 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(1, '/product') }}><DesktopMacSharpIcon className='text-2xl mr-3' /> {showDetail && <p>Product</p>}</li>
+                            <li className={`${active === 2 ? 'activeNav' : ''} ${style.list}`} onClick={() => { handleButton(2, '/category') }}><CategoryIcon className='text-2xl mr-3' /> {showDetail && <p>Category</p>}</li>
                         </ul>
                     </div>
                 )}
