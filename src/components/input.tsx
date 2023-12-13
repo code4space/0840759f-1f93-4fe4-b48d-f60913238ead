@@ -154,3 +154,29 @@ export function InputEmail({ state, setState, value, placeHolder }: z.infer<type
         </div>
     );
 }
+
+
+export function InputNumber({ state, setState, value, placeHolder, withoutLabel = false }: z.infer<typeof InputProps>) {
+    function handleChangeState(e: ChangeEvent<HTMLInputElement>) {
+        if (!value) setState(e.target.value);
+        else setState({ ...state, [value]: e.target.value });
+    }
+
+    function checkValue() {
+        if (value) return state[value];
+        else return state;
+    }
+
+    return (
+        <div className={checkValue().length ? 'active-input inputBox' : 'inputBox'}>
+            <input
+                type="number"
+                required
+                value={value ? state[value] : state}
+                onChange={handleChangeState}
+                placeholder={withoutLabel ? placeHolder : ' '}
+            />
+            {withoutLabel ? null : <label>{placeHolder}</label>}
+        </div>
+    );
+}

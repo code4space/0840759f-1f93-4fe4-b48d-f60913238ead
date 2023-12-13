@@ -1,9 +1,7 @@
 import axios from "axios"
 import Link from "next/link";
-import { root } from "postcss";
 
 export default async function Page() {
-
     const response = await axios.get('https://dummyjson.com/products/categories');
     const categories = response.data;
 

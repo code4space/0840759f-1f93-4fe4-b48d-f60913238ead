@@ -1,6 +1,7 @@
 'use client'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import EditIcon from '@mui/icons-material/Edit';
 import { z } from 'zod'
 import Loading from '../loading';
 import { Star } from '@mui/icons-material';
@@ -91,16 +92,16 @@ export default function Page({ params }: paramScheme) {
                     {'>'}
                 </button>
             </div>
-            <div className='w-4/6 pl-5'>
-                <h1 className='font-bold text-3xl'>{product.title} - {product.brand}</h1>
+            <div className='w-full md:w-4/6 pl-5'>
+                <h1 className='font-bold text-lg md:text-xl lg:text-2xl xl:text-3xl w-full'>{product.title} - {product.brand} </h1>
                 <p >Rating <Star className=' text-yellow-500 relative' style={{ top: '-2px' }} />{product.rating}</p>
-                <h2 className='font-bold text-4xl mt-3 text-gray-800 '>${(product.price - ((product.discountPercentage / 100) * product.price)).toFixed(2)} USD</h2>
+                <h2 className='font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl mt-3 text-gray-800 '>${(product.price - ((product.discountPercentage / 100) * product.price)).toFixed(2)} USD</h2>
                 <h3 className='mt-2'><b className=' bg-red-200 text-red-500 p-1 rounded-md'>{product.discountPercentage}%</b><span className=' line-through ml-1 text-gray-600'>${product.price} USD</span></h3>
                 <h3 className='mt-8 font-bold text-gray-800 text-lg'>Description</h3>
                 <p>{product.description}</p>
                 <p>Stock: {product.stock}</p>
                 <p>Brand: {product.brand}</p>
-                <Link href={`/product?category=${product.category}`} className='cursor-pointer border border-purple-600 p-1 rounded-md hover:bg-purple-600 text-purple-600 hover:text-white relative transition-all duration-200 ease-in-out top-3 hover:top-2 hover:shadow-md'>{product.category}</Link>
+                <p className='mt-2'>Tag: <Link href={`/product?category=${product.category}`} className='ml-2 cursor-pointer border border-gray-800 p-1 rounded-md hover:bg-gray-800 text-gray-800 hover:text-white relative transition-all duration-200 ease-in-out hover:shadow-md'>{product.category}</Link></p>
             </div>
         </div>
     );

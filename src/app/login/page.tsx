@@ -28,7 +28,7 @@ export default function Page() {
             })
             .then(({ token: access_token }) => {
                 router.push('/')
-                document.cookie = `access_token=${access_token}; path=/; max-age=3600`
+                document.cookie = `access_token=${access_token}; path=/; max-age=14400`
 
                 Swal.fire({
                     position: 'top-end',
