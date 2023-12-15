@@ -6,6 +6,7 @@ import { z } from 'zod'
 import Loading from '../loading';
 import { Star } from '@mui/icons-material';
 import Link from 'next/link';
+import Image from 'next/image';
 
 type paramScheme = {
     params: { productID: string };
@@ -58,7 +59,7 @@ export default function Page({ params }: paramScheme) {
                                 }`}
                             style={{ zIndex: index === activeIndex ? 1 : 0 }}
                         >
-                            <img src={el} className="w-full h-full object-cover" alt={`Slide ${index + 1}`} />
+                            <Image src={el} className="w-full h-full object-cover" alt={`Slide ${index + 1}`} />
                         </div>
                     ))}
                 </div>

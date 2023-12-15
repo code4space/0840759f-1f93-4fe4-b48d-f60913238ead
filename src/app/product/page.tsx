@@ -57,7 +57,7 @@ function InputSearch() {
     )
 }
 
-export default function page() {
+export default function Page() {
     const [products, setProducts] = useState<any[]>([]);
     const [totalPage, setTotalPage] = useState(1);
     const [activePage, setActivePage] = useState(1);
@@ -117,7 +117,7 @@ export default function page() {
 
     useEffect(() => {
         fetchData(); // Call the fetchData function
-    }, [searchParams]);
+    }, [searchParams, fetchData]);
 
     function navigate(page: number) {
         const q: string | null = searchParams.get('q');
@@ -211,7 +211,7 @@ export default function page() {
                 id
             }));
         }
-    }, [editForm.modalOpen, products]);
+    }, [products]);
 
     if (loading) return <Loading />
     return (

@@ -6,9 +6,11 @@ import axios from 'axios';
 import { baseUrl } from '@/constant/url'
 import Swal from "sweetalert2";
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import LoadingUI from '@/components/loading';
 
 export default function Page() {
     const router = useRouter()
+    const [loading, setLoading] = useState(false)
     const [data, setData] = useState({
         username: '',
         password: '',
@@ -16,6 +18,7 @@ export default function Page() {
 
     async function login(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
+        setLoading(true)
         const { username, password, } = data
         await axios({
             url: baseUrl + `/auth/login`,
@@ -30,6 +33,7 @@ export default function Page() {
                 router.push('/')
                 document.cookie = `access_token=${access_token}; path=/; max-age=14400`
 
+                setLoading(false)
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
@@ -43,9 +47,11 @@ export default function Page() {
                     title: `ERROR ${error.response.status}`,
                     text: error.response.data.message,
                 });
+                setLoading(false)
             })
     }
 
+    if (loading) return <LoadingUI />
     return (
         <div className='min-h-screen w-screen flex items-center justify-center relative bg-cover'
             style={{ backgroundImage: 'url(https://images5.alphacoders.com/132/1323475.png)' }}>

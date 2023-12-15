@@ -58,13 +58,13 @@ export default function Page() {
       <div className="flex w-full gap-3 mb-3 flex-wrap">
         <div className=' flex-auto shadow-md p-3 border border-gray-300 rounded-xl bg-white transition-all relative hover:bg-purple-600 cursor-pointer group'>
           <span className='absolute right-3 bg-purple-300 text-purple-600 p-3 flex items-center justify-center top-3 rounded-xl group-hover:bg-white group-hover:text-purple-600'><ShoppingCartOutlinedIcon /></span>
-          <p className='h-10 text-gray-600 text-base group-hover:text-white'>ABC's</p>
+          <p className='h-10 text-gray-600 text-base group-hover:text-white'>ABC&apos;s</p>
           <p className='h-10 text-xl group-hover:text-white'>2023</p>
           <p className='h-10 group-hover:text-white'><b className=' text-purple-600 group-hover:text-yellow-200'>3 new</b> Since last visit</p>
         </div>
         <div className=' flex-auto shadow-md p-3 border border-gray-300 rounded-xl bg-white transition-all relative hover:bg-purple-600 cursor-pointer group'>
           <span className='absolute right-3 bg-purple-300 text-purple-600 p-3 flex items-center justify-center top-3 rounded-xl group-hover:bg-white group-hover:text-purple-600'><ShoppingCartOutlinedIcon /></span>
-          <p className='h-10 text-gray-600 text-base group-hover:text-white'>ABC's</p>
+          <p className='h-10 text-gray-600 text-base group-hover:text-white'>ABC&apos;s</p>
           <p className='h-10 text-xl group-hover:text-white'>2023</p>
           <p className='h-10 group-hover:text-white'><b className=' text-purple-600 group-hover:text-yellow-200'>3 new</b> Since last visit</p>
         </div>
