@@ -2,7 +2,7 @@ import '@/assets/css/loading.css'
 
 const LoadingUI = () => {
     return (
-        <div id="loading">
+        <div id="loading" data-testid="loading">
             <svg viewBox="0 0 100 100">
                 <defs>
                     <filter id="shadow">

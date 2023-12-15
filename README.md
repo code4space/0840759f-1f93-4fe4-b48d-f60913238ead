@@ -15,9 +15,21 @@ React is a free and open-source front-end JavaScript library for building user i
 Make sure you already in a project folder, then open the folder address in the terminal and do the command below
 
 ```bash
-$ cd Stool-client
+$ git clone https://github.com/code4space/0840759f-1f93-4fe4-b48d-f60913238ead.git
+$ cd 0840759f-1f93-4fe4-b48d-f60913238ead
+```
+
+- With NPM
+```bash
 $ npm install
 $ npm run dev
+```
+
+- Or Using Docker
+
+```bash
+$ docker-compose build
+$ docker-compose up
 ```
 
 _It is recommended to install [nodejs](https://nodejs.org/en/download) version 18.xx and [Git Bash](https://git-scm.com/downloads) first_

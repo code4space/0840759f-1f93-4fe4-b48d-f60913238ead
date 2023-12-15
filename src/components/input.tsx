@@ -114,11 +114,11 @@ export function Input({ state, setState, value, placeHolder, withoutLabel = fals
 
     function checkValue() {
         if (value) return state[value];
-        else return state;
+        else return state ?? "";
     }
 
     return (
-        <div className={checkValue().length ? 'active-input inputBox' : 'inputBox'}>
+        <div className={checkValue()?.length ? 'active-input inputBox' : 'inputBox'}>
             <input
                 type="text"
                 required
