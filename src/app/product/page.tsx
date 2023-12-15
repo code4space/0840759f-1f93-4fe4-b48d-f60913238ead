@@ -117,7 +117,7 @@ export default function Page() {
 
     useEffect(() => {
         fetchData(); // Call the fetchData function
-    }, [searchParams, fetchData]);
+    }, [searchParams]);
 
     function navigate(page: number) {
         const q: string | null = searchParams.get('q');
@@ -317,4 +317,3 @@ export default function Page() {
         </>
     )
 }
-
